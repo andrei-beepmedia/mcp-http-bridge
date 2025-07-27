@@ -1,0 +1,122 @@
+{
+  "timestamp": "2025-07-26T14:58:29.460785",
+  "duration": 412.616766,
+  "total_servers": 19,
+  "passed": 7,
+  "results": {
+    "mcp-aws": {
+      "type": "python",
+      "build": true,
+      "protocol": true,
+      "status": "Passed"
+    },
+    "mcp-google-workspace": {
+      "type": "python",
+      "build": true,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-google-sheets": {
+      "type": "python",
+      "build": false,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-pdf-reader": {
+      "type": "python",
+      "build": true,
+      "protocol": true,
+      "status": "Passed"
+    },
+    "mcp-openai": {
+      "type": "python",
+      "build": true,
+      "protocol": true,
+      "status": "Passed"
+    },
+    "mcp-notion": {
+      "type": "node",
+      "build": true,
+      "protocol": true,
+      "status": "Passed"
+    },
+    "mcp-gdrive": {
+      "type": "node",
+      "build": false,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-cloudflare": {
+      "type": "node",
+      "build": false,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-stripe": {
+      "type": "node",
+      "build": false,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-paypal": {
+      "type": "node",
+      "build": false,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-shopify": {
+      "type": "node",
+      "build": false,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-firecrawl": {
+      "type": "node",
+      "build": true,
+      "protocol": true,
+      "status": "Passed"
+    },
+    "mcp-elevenlabs": {
+      "type": "node",
+      "build": true,
+      "protocol": true,
+      "status": "Passed"
+    },
+    "mcp-docker": {
+      "type": "node",
+      "build": true,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-redis": {
+      "type": "node",
+      "build": true,
+      "protocol": true,
+      "status": "Passed"
+    },
+    "mcp-alchemy": {
+      "type": "node",
+      "build": false,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-slack": {
+      "type": "go",
+      "build": true,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-filesystem": {
+      "type": "node",
+      "build": false,
+      "protocol": false,
+      "status": "Failed"
+    },
+    "mcp-screenshot": {
+      "type": "node",
+      "build": false,
+      "protocol": false,
+      "status": "Failed"
+    }
+  }
+}

@@ -1,0 +1,287 @@
+🚀 MCP Server Build and Test Suite
+Testing 19 servers...
+Started at: 2025-07-26 14:58:29.460785
+
+============================================================
+Testing mcp-aws
+Type: python
+Path: mcp-aws/src/core-mcp-server
+
+📦 Building mcp-aws...
+✅ Successfully built mcp-aws
+   Image size: 176MB
+🧪 Testing mcp-aws MCP protocol...
+✅ mcp-aws MCP protocol test passed
+
+============================================================
+Testing mcp-google-workspace
+Type: python
+Path: mcp-google-workspace
+
+📦 Building mcp-google-workspace...
+✅ Successfully built mcp-google-workspace
+   Image size: 498MB
+🧪 Testing mcp-google-workspace MCP protocol...
+❌ mcp-google-workspace MCP protocol test failed
+
+============================================================
+Testing mcp-google-sheets
+Type: python
+Path: mcp-google-sheets
+
+📦 Building mcp-google-sheets...
+❌ Failed to build mcp-google-sheets
+   Error: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.mcp-google-sheets
+#1 transferring dockerfile: 740B done
+#1 DONE 0.0s
+
+#2 [internal] l...
+
+============================================================
+Testing mcp-pdf-reader
+Type: python
+Path: mcp-pdf-reader
+
+📦 Building mcp-pdf-reader...
+✅ Successfully built mcp-pdf-reader
+   Image size: 491MB
+🧪 Testing mcp-pdf-reader MCP protocol...
+✅ mcp-pdf-reader MCP protocol test passed
+
+============================================================
+Testing mcp-openai
+Type: python
+Path: mcp-openai
+
+📦 Building mcp-openai...
+✅ Successfully built mcp-openai
+   Image size: 1.79GB
+🧪 Testing mcp-openai MCP protocol...
+⚠️  mcp-openai responded with error (server is running)
+
+============================================================
+Testing mcp-notion
+Type: node
+Path: mcp-notion
+
+📦 Building mcp-notion...
+✅ Successfully built mcp-notion
+   Image size: 468MB
+🧪 Testing mcp-notion MCP protocol...
+✅ mcp-notion MCP protocol test passed
+
+============================================================
+Testing mcp-gdrive
+Type: node
+Path: mcp-gdrive
+
+📦 Building mcp-gdrive...
+❌ Failed to build mcp-gdrive
+   Error: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.mcp-gdrive
+#1 transferring dockerfile: 721B done
+#1 DONE 0.0s
+
+#2 [internal] load met...
+
+============================================================
+Testing mcp-cloudflare
+Type: node
+Path: mcp-cloudflare
+
+📦 Building mcp-cloudflare...
+❌ Failed to build mcp-cloudflare
+   Error: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.13kB done
+#1 DONE 0.0s
+
+#2 resolve image config for doc...
+
+============================================================
+Testing mcp-stripe
+Type: node
+Path: mcp-stripe
+
+📦 Building mcp-stripe...
+⚠️  No Dockerfile found for mcp-stripe, creating one...
+✅ Created Dockerfile for mcp-stripe
+❌ Failed to build mcp-stripe
+   Error: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 190B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for d...
+
+============================================================
+Testing mcp-paypal
+Type: node
+Path: mcp-paypal
+
+📦 Building mcp-paypal...
+⚠️  No Dockerfile found for mcp-paypal, creating one...
+✅ Created Dockerfile for mcp-paypal
+❌ Failed to build mcp-paypal
+   Error: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 190B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for d...
+
+============================================================
+Testing mcp-shopify
+Type: node
+Path: mcp-shopify
+
+📦 Building mcp-shopify...
+❌ Failed to build mcp-shopify
+   Error: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 903B done
+#1 DONE 0.0s
+
+#2 resolve image config for docke...
+
+============================================================
+Testing mcp-firecrawl
+Type: node
+Path: mcp-firecrawl
+
+📦 Building mcp-firecrawl...
+✅ Successfully built mcp-firecrawl
+   Image size: 384MB
+🧪 Testing mcp-firecrawl MCP protocol...
+✅ mcp-firecrawl MCP protocol test passed
+
+============================================================
+Testing mcp-elevenlabs
+Type: node
+Path: mcp-elevenlabs
+
+📦 Building mcp-elevenlabs...
+✅ Successfully built mcp-elevenlabs
+   Image size: 717MB
+🧪 Testing mcp-elevenlabs MCP protocol...
+✅ mcp-elevenlabs MCP protocol test passed
+
+============================================================
+Testing mcp-docker
+Type: node
+Path: mcp-docker
+
+📦 Building mcp-docker...
+✅ Successfully built mcp-docker
+   Image size: 1.42GB
+🧪 Testing mcp-docker MCP protocol...
+❌ mcp-docker MCP protocol test failed
+
+============================================================
+Testing mcp-redis
+Type: node
+Path: mcp-redis
+
+📦 Building mcp-redis...
+✅ Successfully built mcp-redis
+   Image size: 404MB
+🧪 Testing mcp-redis MCP protocol...
+✅ mcp-redis MCP protocol test passed
+
+============================================================
+Testing mcp-alchemy
+Type: node
+Path: mcp-alchemy
+
+📦 Building mcp-alchemy...
+❌ Failed to build mcp-alchemy
+   Error: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.05kB done
+#1 DONE 0.0s
+
+#2 resolve image config for doc...
+
+============================================================
+Testing mcp-slack
+Type: go
+Path: mcp-slack
+
+📦 Building mcp-slack...
+✅ Successfully built mcp-slack
+   Image size: 41.1MB
+🧪 Testing mcp-slack MCP protocol...
+❌ mcp-slack MCP protocol test failed
+
+============================================================
+Testing mcp-filesystem
+Type: node
+Path: mcp-servers-official/src/filesystem
+
+📦 Building mcp-filesystem...
+❌ Failed to build mcp-filesystem
+   Error: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 643B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for d...
+
+============================================================
+Testing mcp-screenshot
+Type: node
+Path: mcp-servers-official/src/screenshot
+
+📦 Building mcp-screenshot...
+⚠️  No Dockerfile found for mcp-screenshot, creating one...
+✅ Created Dockerfile for mcp-screenshot
+❌ Failed to build mcp-screenshot
+   Error: #0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 190B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for d...
+
+================================================================================
+📊 Test Summary
+================================================================================
+Server                    Type       Build      Protocol   Status    
+--------------------------------------------------------------------------------
+mcp-alchemy               node       ❌          ❌          Failed    
+mcp-aws                   python     ✅          ✅          Passed    
+mcp-cloudflare            node       ❌          ❌          Failed    
+mcp-docker                node       ✅          ❌          Failed    
+mcp-elevenlabs            node       ✅          ✅          Passed    
+mcp-filesystem            node       ❌          ❌          Failed    
+mcp-firecrawl             node       ✅          ✅          Passed    
+mcp-gdrive                node       ❌          ❌          Failed    
+mcp-google-sheets         python     ❌          ❌          Failed    
+mcp-google-workspace      python     ✅          ❌          Failed    
+mcp-notion                node       ✅          ✅          Passed    
+mcp-openai                python     ✅          ✅          Passed    
+mcp-paypal                node       ❌          ❌          Failed    
+mcp-pdf-reader            python     ✅          ✅          Passed    
+mcp-redis                 node       ✅          ✅          Passed    
+mcp-screenshot            node       ❌          ❌          Failed    
+mcp-shopify               node       ❌          ❌          Failed    
+mcp-slack                 go         ✅          ❌          Failed    
+mcp-stripe                node       ❌          ❌          Failed    
+--------------------------------------------------------------------------------
+Total: 7/19 passed
+Duration: 412.62 seconds
+
+By type: Python: 3, Node.js: 4, Go: 0
+
+Detailed report saved to: /Users/andreihasna/Missions/beepmedia/mission-mcps/reports/test-report-20250726-145829.json
+Markdown report saved to: /Users/andreihasna/Missions/beepmedia/mission-mcps/reports/test-report-20250726-145829.md

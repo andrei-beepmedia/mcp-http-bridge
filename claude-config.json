@@ -1,0 +1,46 @@
+{
+  "mcpServers": {
+    "notion": {
+      "transport": "http",
+      "url": "https://mcp.yourdomain.com/notion",
+      "headers": {
+        "Authorization": "Bearer YOUR_MCP_AUTH_TOKEN"
+      }
+    },
+    "slack": {
+      "transport": "http", 
+      "url": "https://mcp.yourdomain.com/slack",
+      "headers": {
+        "Authorization": "Bearer YOUR_MCP_AUTH_TOKEN"
+      }
+    },
+    "stripe": {
+      "transport": "http",
+      "url": "https://mcp.yourdomain.com/stripe",
+      "headers": {
+        "Authorization": "Bearer YOUR_MCP_AUTH_TOKEN"
+      }
+    },
+    "openai": {
+      "transport": "http",
+      "url": "https://mcp.yourdomain.com/openai",
+      "headers": {
+        "Authorization": "Bearer YOUR_MCP_AUTH_TOKEN"
+      }
+    },
+    "gdrive": {
+      "transport": "http",
+      "url": "https://mcp.yourdomain.com/gdrive",
+      "headers": {
+        "Authorization": "Bearer YOUR_MCP_AUTH_TOKEN"
+      }
+    },
+    "cloudflare": {
+      "transport": "http",
+      "url": "https://mcp.yourdomain.com/cloudflare",
+      "headers": {
+        "Authorization": "Bearer YOUR_MCP_AUTH_TOKEN"
+      }
+    }
+  }
+}

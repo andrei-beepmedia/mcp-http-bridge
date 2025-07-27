@@ -1,0 +1,128 @@
+version: '3.8'
+
+services:
+  # AWS Secrets Manager init container
+  secrets-init:
+    build:
+      context: ./scripts
+      dockerfile: Dockerfile.secrets
+    environment:
+      - AWS_DEFAULT_REGION=us-east-1
+      - USE_BEEPMEDIA_ACCOUNT=true
+    volumes:
+      - secrets:/secrets
+    command: python inject-secrets.py
+
+  # Notion MCP Server
+  mcp-notion:
+    build:
+      context: ./repos/mcp-notion
+      dockerfile: ../../dockerfiles/Dockerfile.notion
+    depends_on:
+      - secrets-init
+    volumes:
+      - secrets:/secrets:ro
+    ports:
+      - "8001:8000"
+    environment:
+      - MCP_TRANSPORT=http
+    command: /scripts/start-with-secrets.sh
+
+  # Slack MCP Server
+  mcp-slack:
+    build:
+      context: ./repos/mcp-slack
+      dockerfile: ../../dockerfiles/Dockerfile.slack
+    depends_on:
+      - secrets-init
+    volumes:
+      - secrets:/secrets:ro
+    ports:
+      - "8002:8000"
+    environment:
+      - MCP_TRANSPORT=http
+
+  # Stripe MCP Server
+  mcp-stripe:
+    build:
+      context: ./repos/mcp-stripe
+      dockerfile: ../../dockerfiles/Dockerfile.stripe
+    depends_on:
+      - secrets-init
+    volumes:
+      - secrets:/secrets:ro
+    ports:
+      - "8003:8000"
+    environment:
+      - MCP_TRANSPORT=http
+
+  # OpenAI MCP Server
+  mcp-openai:
+    build:
+      context: ./repos/mcp-openai
+      dockerfile: ../../dockerfiles/Dockerfile.openai
+    depends_on:
+      - secrets-init
+    volumes:
+      - secrets:/secrets:ro
+    ports:
+      - "8004:8000"
+    environment:
+      - MCP_TRANSPORT=http
+
+  # Google Drive MCP Server
+  mcp-gdrive:
+    build:
+      context: ./repos/mcp-gdrive
+      dockerfile: ../../dockerfiles/Dockerfile.gdrive
+    depends_on:
+      - secrets-init
+    volumes:
+      - secrets:/secrets:ro
+    ports:
+      - "8005:8000"
+    environment:
+      - MCP_TRANSPORT=http
+
+  # Cloudflare MCP Server
+  mcp-cloudflare:
+    build:
+      context: ./repos/mcp-cloudflare
+      dockerfile: ../../dockerfiles/Dockerfile.cloudflare
+    depends_on:
+      - secrets-init
+    volumes:
+      - secrets:/secrets:ro
+    ports:
+      - "8006:8000"
+    environment:
+      - MCP_TRANSPORT=http
+
+  # Redis for caching and session management
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  # Nginx reverse proxy
+  nginx:
+    image: nginx:alpine
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./certs:/etc/nginx/certs:ro
+    ports:
+      - "443:443"
+      - "80:80"
+    depends_on:
+      - mcp-notion
+      - mcp-slack
+      - mcp-stripe
+      - mcp-openai
+      - mcp-gdrive
+      - mcp-cloudflare
+
+volumes:
+  secrets:
+  redis-data:

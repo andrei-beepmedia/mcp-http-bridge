@@ -1,0 +1,89 @@
+version: '3.8'
+
+services:
+  # Redis for caching
+  redis:
+    image: redis:7-alpine
+    container_name: mcp-redis-cache
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  # Working MCP Servers
+  aws:
+    image: mcp-aws:latest
+    container_name: mcp-aws
+    restart: unless-stopped
+    ports:
+      - "8001:8000"
+    environment:
+      - MCP_TRANSPORT=http
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=us-east-1
+
+  notion:
+    image: mcp-notion:latest
+    container_name: mcp-notion
+    restart: unless-stopped
+    ports:
+      - "8002:8000"
+    environment:
+      - MCP_TRANSPORT=http
+      - NOTION_API_KEY=${NOTION_API_KEY}
+
+  pdf-reader:
+    image: mcp-pdf-reader:latest
+    container_name: mcp-pdf-reader
+    restart: unless-stopped
+    ports:
+      - "8003:8000"
+    environment:
+      - MCP_TRANSPORT=http
+
+  openai:
+    image: mcp-openai:latest
+    container_name: mcp-openai
+    restart: unless-stopped
+    ports:
+      - "8004:8000"
+    environment:
+      - MCP_TRANSPORT=http
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+  firecrawl:
+    image: mcp-firecrawl:latest
+    container_name: mcp-firecrawl
+    restart: unless-stopped
+    ports:
+      - "8005:8000"
+    environment:
+      - MCP_TRANSPORT=http
+      - FIRECRAWL_API_KEY=${FIRECRAWL_API_KEY}
+
+  elevenlabs:
+    image: mcp-elevenlabs:latest
+    container_name: mcp-elevenlabs
+    restart: unless-stopped
+    ports:
+      - "8006:8000"
+    environment:
+      - MCP_TRANSPORT=http
+      - ELEVENLABS_API_KEY=${ELEVENLABS_API_KEY}
+
+  redis-mcp:
+    image: mcp-redis:latest
+    container_name: mcp-redis-server
+    restart: unless-stopped
+    ports:
+      - "8007:8000"
+    environment:
+      - MCP_TRANSPORT=http
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - redis
+
+volumes:
+  redis-data:
