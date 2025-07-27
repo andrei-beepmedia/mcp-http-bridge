@@ -1,0 +1,61 @@
+# Multi-stage build for unified MCP HTTP Bridge
+FROM python:3.11-slim as python-builder
+
+# Install Python dependencies
+RUN pip install --no-cache-dir \
+    mcp \
+    pymcp \
+    PyPDF2 \
+    pdfplumber \
+    boto3 \
+    awslabs.core-mcp-server
+
+# Node.js stage
+FROM node:20-slim
+
+# Install Python runtime
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy Python packages from builder
+COPY --from=python-builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=python-builder /usr/local/bin /usr/local/bin
+
+# Create app directory
+WORKDIR /app
+
+# Copy bridge server files
+COPY package.json ./
+COPY server-v2.js ./server.js
+
+# Install Node dependencies
+RUN npm install --production
+
+# Create directories for MCP servers
+RUN mkdir -p /app/mcp-servers/pdf-reader \
+    /app/mcp-servers/notion \
+    /app/mcp-servers/aws
+
+# Copy MCP server implementations (we'll mount these as volumes or copy from repos)
+# For now, create placeholder scripts
+RUN echo '#!/usr/bin/env python3\nimport sys\nprint("PDF Reader MCP placeholder", file=sys.stderr)\nsys.exit(1)' > /app/mcp-servers/pdf-reader/mcp_pdf_reader.py && \
+    chmod +x /app/mcp-servers/pdf-reader/mcp_pdf_reader.py
+
+# Set environment variables
+ENV NODE_ENV=production
+ENV PYTHONUNBUFFERED=1
+ENV PATH="/usr/local/bin:$PATH"
+
+# Expose port
+EXPOSE 3000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD curl -f http://localhost:3000/health || exit 1
+
+# Run the bridge server
+CMD ["node", "server.js"]

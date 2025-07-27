@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  # HTTP-to-MCP Bridge
+  bridge:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MCP_API_KEY=${MCP_API_KEY}
+      - NODE_ENV=production
+    networks:
+      - mcp-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # MCP Servers as separate services
+  mcp-notion:
+    image: mcp-notion:latest
+    stdin_open: true
+    tty: true
+    environment:
+      - NOTION_API_KEY=${NOTION_API_KEY}
+    networks:
+      - mcp-network
+    restart: unless-stopped
+    command: notion-mcp-server
+
+  mcp-pdf-reader:
+    image: mcp-pdf-reader:latest
+    stdin_open: true
+    tty: true
+    networks:
+      - mcp-network
+    restart: unless-stopped
+    command: python mcp_pdf_reader.py
+
+  mcp-aws:
+    image: mcp-aws:latest
+    stdin_open: true
+    tty: true
+    environment:
+      - AWS_REGION=us-east-1
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    networks:
+      - mcp-network
+    restart: unless-stopped
+    command: awslabs.core-mcp-server.server
+
+networks:
+  mcp-network:
+    driver: bridge

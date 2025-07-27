@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  # Run the bridge with access to Docker socket
+  bridge:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - MCP_API_KEY=${MCP_API_KEY}
+      - NODE_ENV=production
+      - NOTION_API_KEY=${NOTION_API_KEY}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+    volumes:
+      # Mount Docker socket to allow container management
+      - /var/run/docker.sock:/var/run/docker.sock
+    user: root
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
